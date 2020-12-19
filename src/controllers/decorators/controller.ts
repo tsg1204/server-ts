@@ -40,8 +40,20 @@ export function controller(routePrefix: string) {
         target.prototype, 
         key) || [];
 
+      const requiredBodyProps = Reflect.getMetadata(
+        MetadataKeys.validator,
+        target.prototype, 
+        key) || [];
+      
+      const validator = bodyValidators(requiredBodyProps);
+
       if (path) {
-        router[method](`${routePrefix}${path}`, ...middlewares, routeHandler);
+        router[method](
+          `${routePrefix}${path}`, 
+          ...middlewares, 
+          validator, 
+          routeHandler
+        );
       }
     }
   }
