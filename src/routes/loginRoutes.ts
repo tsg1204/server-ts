@@ -27,13 +27,6 @@ router.post('/login', (req: RequestWithBody, res: Response) => {
   } else{
     res.send('Invalid email or password')
   }
-
-  // if (email) {
-  //   res.send(email.toUpperCase());
-  // } else {
-  //   res.send('You must provide an email')
-  // }
-
 })
 
 router.get('/', (req: RequestWithBody, res: Response) => {
